@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Debt } from "src/debts/entities/debts.entity";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class User {
@@ -19,4 +20,7 @@ export class User {
 
     @Column({default: 'user'})
     role: 'admin' | 'user';
+
+    @OneToMany(() => Debt, (debt) => debt.customer) 
+    debts: Debt[];
 }

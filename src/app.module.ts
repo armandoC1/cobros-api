@@ -1,19 +1,19 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ConfigModule } from '@nestjs/config'; // Módulo para manejar variables de entorno
-import { AuthModule } from './auth/auth.module'; // Módulo de autenticación
+import { ConfigModule } from '@nestjs/config';
+import { AuthModule } from './auth/auth.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './Users/user.module';
+import { DebtModule } from './debts/debts.module';
+import { PaymentModule } from './payment/payment.module';
 
 @Module({
   imports: [
-    // Configuración de variables de entorno
     ConfigModule.forRoot({
-      isGlobal: true, // Hace las variables accesibles en todo el proyecto
+      isGlobal: true,
     }),
 
-    // Configuración de TypeORM
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: process.env.DB_HOST,
@@ -21,13 +21,12 @@ import { UserModule } from './Users/user.module';
       username: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      autoLoadEntities: true, // Carga automática de entidades
-      synchronize: true, // Sincronización automática de esquemas (desactiva en producción)
+      autoLoadEntities: true,
     }),
-
-    // Importar módulos de funcionalidad
     UserModule,
     AuthModule,
+    DebtModule,
+    PaymentModule,
   ],
   controllers: [AppController],
   providers: [AppService],
