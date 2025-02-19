@@ -21,7 +21,7 @@ export class UserController {
     return this.usersService.createUser(body.fullName);
   }
 
-  @Get()
+  @Get(':username')
   @UseGuards(JwtAuthGuard, new RolesGuard(['admin']))
   async findByUsername(@Param('username') username: string) {
     return this.usersService.findByUsername(username);
