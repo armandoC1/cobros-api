@@ -39,7 +39,7 @@ export class DebtController {
     return this.debtSerive.findOne(id);
   }
 
-  @Get(':id')
+  @Get('customer/:id')
   @UseGuards(JwtAuthGuard)
   async findByCustomer(@Param('id') id: number) {
     return this.debtSerive.findByCustomer(id);
