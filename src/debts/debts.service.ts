@@ -139,6 +139,25 @@ export class DebtService {
     }
   }
 
+  async findByCustomer(idCustomer: number): Promise<Debt[]> {
+    try {
+      const debts = await this.debtRepository.find({
+        where: { customer: { id: idCustomer } },
+        relations: ['customer'],
+      });
+
+      if (!debts.length) {
+        throw new Error(
+          `No se encontraron deudas para el usuario con ID ${idCustomer}`,
+        );
+      }
+
+      return debts;
+    } catch (error) {
+      throw new Error(`Error al buscar las deudas: ${error.message}`);
+    }
+  }
+
   async update(id: number, updateDetbDto: UpdateDebtsDto) {
     try {
       const debt = await this.debtRepository.findOne({
