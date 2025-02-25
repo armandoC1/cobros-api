@@ -10,8 +10,8 @@ import {
   Delete,
 } from '@nestjs/common';
 import { DebtService } from './debts.service';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { RolesGuard } from 'src/auth/roles.guard';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { RolesGuard } from '../auth/roles.guard';
 import { CreateDetDto } from './dto/create-debts.dto';
 import { SearchDebtsDto } from './dto/seach-debts.dto';
 import { UpdateDateColumn } from 'typeorm';
