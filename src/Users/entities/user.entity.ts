@@ -1,4 +1,4 @@
-import { Debt } from "src/debts/entities/debts.entity";
+import { Debt } from "../../debts/entities/debts.entity";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
